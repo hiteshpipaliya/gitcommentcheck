@@ -10,7 +10,7 @@ jobs:
       - uses: khan/pull-request-comment-trigger@master
         id: check
         with:
-          trigger: '@deploy'
+          trigger: 'deploy'
           reaction: rocket
         env:
           GITHUB_TOKEN: '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'
