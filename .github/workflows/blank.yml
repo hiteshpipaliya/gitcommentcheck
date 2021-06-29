@@ -1,5 +1,6 @@
 name: Main Workflow
 on:
+  issue_comment:
     types: [created]
 jobs:
   build:
