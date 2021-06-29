@@ -1,12 +1,27 @@
-
-on: 
+name: Main Workflow
+on:
   pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
   issue_comment:
-    types: [created, edited]
-
+    types: [created]
 jobs:
-  pr_commented:
+  build:
     runs-on: ubuntu-latest
-    name: PR comment
+    if: "contains(github.event.comment.body, 'ok to test')"
     steps:
-      - run: echo "Comment on PR #${{ github.event.issue.number }}"
+    - name: Github API Request
+      id: request
+      uses: octokit/request-action@v2.0.2
+      with:
+        route: ${{ github.event.issue.pull_request.url }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Checkout PR Branch
+      if: "contains(github.event.comment.body, 'ok to test')"
+      run: |
+          echo Hello
+          
+    - name: Testing
+      run: echo test
