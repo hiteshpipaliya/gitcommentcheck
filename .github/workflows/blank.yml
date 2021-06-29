@@ -25,7 +25,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: khan/pull-request-comment-trigger@master
         id: check
         with:
@@ -33,5 +32,5 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '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'
-        run: 'echo Found it!'
+      - run: 'echo Found it!'
         if: steps.check.outputs.triggered == 'true'
