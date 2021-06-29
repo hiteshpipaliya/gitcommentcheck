@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "contains(github.event.comment.body, 'ok to test')"
     name: PR comment
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
