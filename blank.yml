@@ -1,15 +1,18 @@
-name: issue-comment-CI-test 
-
-on: 
-  issue_comment:    
-    types: [created]    
-jobs:   
-  build:    
-
-    runs-on: ubuntu-latest  
-
-    steps:  
-    - uses: actions/checkout@v1 
-    - name: Run a one-line script   
-      run: echo Hello, world!   
-    - name: Run a multi-line script 
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: khan/pull-request-comment-trigger@master
+        id: check
+        with:
+          trigger: '@deploy'
+          reaction: rocket
+        env:
+          GITHUB_TOKEN: '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'
+      - run: 'echo Found it!'
+        if: steps.check.outputs.triggered == 'true'
