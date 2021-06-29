@@ -5,9 +5,8 @@ on:
     types: [opened, synchronize, reopened]
   issue_comment:
     types: [created]
-
 jobs:
-  pr_commented:
+  build:
     runs-on: ubuntu-latest
     name: PR comment
     steps:
