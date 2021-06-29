@@ -8,7 +8,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: "contains(github.event.comment.body, 'ok to test')"
-    name: PR comment
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - name: Github API Request
+      id: request
+      uses: octokit/request-action@v2.0.2
+      with:
+        route: ${{ github.event.issue.pull_request.url }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Checkout PR Branch
+      run: |
+          echo Hello
+          
+    - name: Testing
+      run: echo test
