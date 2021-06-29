@@ -6,19 +6,11 @@ on:
     types: [created, edited]
 
 jobs:
-  example_comment_pr:
+  pr_commented:
     runs-on: ubuntu-latest
-    name: An example job to comment a PR
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Comment PR
-        uses: allthatjazzleo/actions-pull-request-add-comment@master
-        if: >-
-          github.event_name == 'pull_request' || (github.event_name == 'issue_comment' 
-          && github.event.comment.body == '/hi' && github.actor == 'allthatjazzleo' )
-        with:
-          message: 'yoyo🤙🏻'
-          # message: "echo ${{ github.event.comment.body }}' dynamic message
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo "Comment on PR #${{ github.event.issue.number }}"
