@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     name: PR comment
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "Comment on PR #${{ github.event.issue.number }}"
