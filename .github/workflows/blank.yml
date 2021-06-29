@@ -1,4 +1,4 @@
-name: Example
+name: Main Workflow
 
 on: 
   pull_request:
