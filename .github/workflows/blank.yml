@@ -18,6 +18,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Checkout PR Branch
+      if: "contains(github.event.comment.body, 'ok to test')"
       run: |
           echo Hello
           
