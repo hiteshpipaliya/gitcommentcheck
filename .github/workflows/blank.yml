@@ -1,4 +1,3 @@
-name: Example
 
 on: 
   pull_request:
@@ -9,8 +8,5 @@ jobs:
   pr_commented:
     runs-on: ubuntu-latest
     name: PR comment
-    if: ${{ github.event.issue.pull_request }}
     steps:
-      - name: Checkout
-      - run: |
-          echo "Comment on PR #${{ github.event.issue.number }}"
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
