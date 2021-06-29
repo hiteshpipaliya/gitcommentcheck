@@ -1,13 +1,15 @@
-name: Main Workflow
+name: Example
+
 on: 
   pull_request:
     branches: [ main ]
     types: [opened, synchronize, reopened]
   issue_comment:
     types: [created]
+
 jobs:
-  build:
+  pr_commented:
     runs-on: ubuntu-latest
-    if: "contains(github.event.comment.body, 'ok to test')"
+    name: PR comment
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
