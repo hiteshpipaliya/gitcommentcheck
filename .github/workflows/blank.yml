@@ -8,19 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: PR comment
     steps:
-    - name: Github API Request
-      id: request
-      uses: octokit/request-action@v2.0.2
-      with:
-        route: ${{ github.event.issue.pull_request.url }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Checkout PR Branch
-      if: "contains(github.event.comment.body, 'ok to test')"
-      run: |
-          echo Hello
-          
-    - name: Testing
-      run: echo test
+      - run: echo ${{ github.event.comment.body }}
