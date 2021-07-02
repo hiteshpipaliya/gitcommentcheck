@@ -8,16 +8,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.comment.body == 'ok to test'
     steps:
     - name: Github API Request
-      if: ${{ github.event.comment.body == 'ok to test'}}
       id: request
       uses: octokit/request-action@v2.0.2
       with:
         route: ${{ github.event.issue.pull_request.url }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Checkout PR Branch
+      run: |
+          echo Hello
           
     - name: Testing
-      if: ${{ github.event.comment.body == 'ok to test'}}
       run: echo test
