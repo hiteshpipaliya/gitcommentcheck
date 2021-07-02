@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     name: PR comment
     steps:
-      - run: hello
+      - run: echo hello
