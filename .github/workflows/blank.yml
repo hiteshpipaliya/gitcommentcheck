@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: ${{ github.event.comment.body == 'ok to test'}}
     steps:
     - name: Github API Request
       id: request
